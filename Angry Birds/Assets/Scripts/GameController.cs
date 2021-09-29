@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -60,7 +61,14 @@ public class GameController : MonoBehaviour
         if(Enemies.Count == 0)
         {
             _isGameEnded = true;
+            StartCoroutine(LoadScene("level 2"));
         }
+    }
+
+    private IEnumerator LoadScene(string sceneName)
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void ChangeBird()
@@ -78,6 +86,11 @@ public class GameController : MonoBehaviour
             SlingShooter.InitiateBird(Birds[0]);
             
             _shotBird = Birds[0];
+        }
+        else
+        {
+            //restart scene
+            StartCoroutine(LoadScene("Main"));
         }
     }
 }

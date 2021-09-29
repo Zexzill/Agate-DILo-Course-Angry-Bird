@@ -21,7 +21,7 @@ public class Owl : Bird
                     obj.GetComponent<Rigidbody2D>().AddForce(direction * _explodePower);
                 }
             }
-
+            RigidBody.AddForce(Vector2.up * (_explodePower / 2));
             _hasExplode = true;
             Debug.Log("boom");
         }
